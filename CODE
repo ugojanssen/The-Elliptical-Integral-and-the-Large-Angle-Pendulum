@@ -1,0 +1,38 @@
+import math
+
+Nterms = 10 #the number of terms we are going to calculate
+
+Num = []
+Den = []
+
+Num = [0 for i in range(Nterms + 1)]
+Den = [0 for i in range(Nterms + 1)]
+
+Theta0 = math.pi / 2 #Input opening angle
+k = math.sin(Theta0/2)
+ksquared = k ** 2
+
+Num[1] = 1
+Den[0] = 1
+
+for i in range(1, Nterms):
+  Num[i+1] = Num[i] * 2 (2*i+1) #Calculating coefficients (Numerator)
+  Den[i] = Den[i-1] * 2*i #Calculating coefficients (Denomenator)
+
+Den[Nterms] = Den[Nterms - 1] * 2 * Nterms
+
+BigK = 1
+for i in range(1, Nterms + 1):
+  BigK = BigK + (Num[i]/Den[i]) ** 2 * ksquared ** i
+
+print(BigK * math.pi / 2)
+
+# EXPLANATION
+
+The program is written in Python to calculate the complete elliptic integral of the first kind, denoted as K(k), for a given opening angle theta_0.
+It employs a series expansion method with a specified number of terms (Nterms) to approximate the integral.
+The program initializes both the numerator and denominator coefficients and calculates the elliptic modulus k and its square.
+The program iteratively computes the coefficients for the series expansion.
+It evaluates the elliptic integral using a loop, summing the terms to obtain an approximation.
+The code can add up thousands of orders in k squared, allowing for high precision in the computations.
+This program provides a practical means of numerically estimating K(k) for different initial angles, supporting the analysis of large-angle pendulums.
